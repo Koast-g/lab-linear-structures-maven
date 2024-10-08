@@ -24,6 +24,7 @@ public class ArrayBasedQueueExperiment {
     expt.peek();
     expt.put("c");
     expt.peek();
+    expt.put("d");
     expt.get();
     expt.peek();
     expt.get();
@@ -31,6 +32,9 @@ public class ArrayBasedQueueExperiment {
     expt.peek();
     expt.get();
     expt.get();
+    expt.peek();
+    expt.get();
+    expt.peek();
 
     // We've put and get the same number of elements, it
     // should be empty

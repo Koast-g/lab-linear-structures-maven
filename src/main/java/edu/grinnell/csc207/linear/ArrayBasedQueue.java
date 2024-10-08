@@ -67,12 +67,14 @@ public class ArrayBasedQueue<T> implements Queue<T> {
 
   @Override
   public boolean isFull() {
-    return this.back() >= this.values.length;
+    return this.back >= this.values.length;
   } // isFull()
 
   @Override
   public void put(T val) throws Exception {
-    if (this.isFull()) {
+    if (this.isFull() && this.values[0] == null) {
+      this.back = 0;
+    } else if (this.isFull()) {
       throw new Exception("no more room!");
     } // this.isFull()
     this.values[this.back()] = val;
