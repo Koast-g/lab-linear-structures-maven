@@ -25,9 +25,15 @@ public class ArrayBasedQueue<T> implements Queue<T> {
   int front;
 
   /**
+   * The back  index of the array
+   */
+  int back;
+
+  /**
    * The number of elements in the queue.
    */
   int size;
+  
 
   // +--------------+----------------------------------------------------
   // | Constructors |
@@ -46,6 +52,8 @@ public class ArrayBasedQueue<T> implements Queue<T> {
     this.values = (T[]) new Object[capacity];
     this.front = 0;
     this.size = 0;
+    this.back = 0;
+
   } // ArayBasedQueue(int capacity)
 
   // +---------------+---------------------------------------------------
@@ -69,6 +77,7 @@ public class ArrayBasedQueue<T> implements Queue<T> {
     } // this.isFull()
     this.values[this.back()] = val;
     ++this.size;
+    ++this.back;
   } // put(T)
 
   @Override
@@ -116,7 +125,7 @@ public class ArrayBasedQueue<T> implements Queue<T> {
    * Get the index of the back of the queue. The back is where we add the next element.
    */
   int back() {
-    return this.size;
+    return this.back;
   } // back()
 
 } // class ArrayBasedQueue<T>
