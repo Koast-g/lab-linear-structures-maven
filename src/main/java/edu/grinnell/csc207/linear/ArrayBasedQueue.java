@@ -139,7 +139,7 @@ class ArrayBasedQueueIterator<T> implements Iterator<T> {
   // +--------+
   ArrayBasedQueue<T> abq;
   int i;
-  // +--------------+----------------------------------------------------
+  // +--------------+-------The remove operation ---------------------------------------------
   // | Constructors |
   // +--------------+
 
@@ -170,7 +170,7 @@ class ArrayBasedQueueIterator<T> implements Iterator<T> {
   } // hasNext()
 
   @Override
-  public void remove() throws UnsupportedOperationException {
-    throw new UnsupportedOperationException();
+  public void remove() {
+    this.abq.values[i] = null;
   } // remove()
 } // ArrayBasedQueueIterator<T>
