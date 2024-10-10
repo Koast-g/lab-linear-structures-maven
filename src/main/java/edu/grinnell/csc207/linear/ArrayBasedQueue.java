@@ -67,12 +67,14 @@ public class ArrayBasedQueue<T> implements Queue<T> {
 
   @Override
   public boolean isFull() {
-    return this.back() >= this.values.length;
+    return this.back >= this.values.length;
   } // isFull()
 
   @Override
   public void put(T val) throws Exception {
-    if (this.isFull()) {
+    if (this.isFull() && this.values[0] == null) {
+      this.back = 0;
+    } else if (this.isFull()) {
       throw new Exception("no more room!");
     } // this.isFull()
     this.values[this.back()] = val;
@@ -135,7 +137,8 @@ class ArrayBasedQueueIterator<T> implements Iterator<T> {
   // +--------+----------------------------------------------------------
   // | Fields |
   // +--------+
-
+  ArrayBasedQueue<T> abq;
+  int i;
   // +--------------+----------------------------------------------------
   // | Constructors |
   // +--------------+
@@ -144,7 +147,8 @@ class ArrayBasedQueueIterator<T> implements Iterator<T> {
    * Create a new iterator.
    */
   public ArrayBasedQueueIterator(ArrayBasedQueue<T> q) {
-    // STUB
+    this.abq = q;
+    this.i = 0;
   } // ArrayBasedQueueIterator
 
   // +---------+---------------------------------------------------------
@@ -156,14 +160,13 @@ class ArrayBasedQueueIterator<T> implements Iterator<T> {
     if (!this.hasNext()) {
       throw new NoSuchElementException("no elements remain");
     } // if no elements
-    // STUB
-    throw new NoSuchElementException("unimplemented");
+    
+    return this.abq.values[i++];
   } // next()
 
   @Override
   public boolean hasNext() {
-    // STUB
-    return false;
+    return i < this.abq.values.length-1;
   } // hasNext()
 
   @Override
